@@ -3,60 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karen AI Assistant | Dashboard</title>
+    <title>Karen AI | My Personal Assistant</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <nav>
         <div class="logo"><strong>KAREN</strong> AI</div>
-        <div id="auth-section">
-            <button id="login-btn" class="primary-btn">Sign In with Google</button>
-            <div id="user-info" style="display:none;">
-                <span id="user-name"></span>
-                <button id="logout-btn" class="secondary-btn">Logout</button>
-            </div>
+        <div id="user-display" style="display:none;">
+            <span id="welcome-text"></span>
+            <button onclick="logout()">Logout</button>
         </div>
     </nav>
 
-    <main id="main-content">
-        <!-- Dashboard: Only visible when logged in -->
-        <div id="dashboard" style="display:none;">
-            <div class="grid-container">
-                
-                <!-- Karen AI Assistant Section -->
-                <section class="card assistant-card">
-                    <h3>Chat with Karen</h3>
-                    <div class="assistant-wrapper">
-                        <!-- Your Jotform Embed -->
-                        <script src='https://cdn.jotfor.ms/agent/embedjs/019c39cecd63724db4f91987bd3ddc4b5c5d/embed.js'></script>
-                    </div>
-                </section>
-
-                <!-- Calendar Section -->
-                <section class="card calendar-card">
-                    <h3>Your Schedule</h3>
-                    <div class="calendar-container">
-                        <!-- Replace 'YOUR_CALENDAR_URL' with your actual Google Calendar or Calendly link -->
-                        <iframe src="YOUR_CALENDAR_URL" style="border: 0" width="100%" height="500" frameborder="0" scrolling="no"></iframe>
-                    </div>
-                </section>
-
-            </div>
+    <main>
+        <!-- LOGIN SECTION (Only shows if no name is saved) -->
+        <div id="login-screen" class="card">
+            <h1>Welcome!</h1>
+            <p>What is your name?</p>
+            <input type="text" id="name-input" placeholder="Enter your name...">
+            <button onclick="saveName()" class="primary-btn">Let's Go!</button>
         </div>
 
-        <!-- Welcome Screen: Visible when logged out -->
-        <div id="welcome-screen">
-            <div class="hero">
-                <h1>Hello, I'm Karen.</h1>
-                <p>Please log in to access your personal assistant and saved data.</p>
+        <!-- DASHBOARD (Hidden until you enter a name) -->
+        <div id="dashboard" style="display:none;">
+            <div class="grid">
+                <!-- Karen AI Embed -->
+                <div class="card">
+                    <h3>Chat with Karen</h3>
+                    <div id="karen-container">
+                        <script src='https://cdn.jotfor.ms'></script>
+                    </div>
+                </div>
+
+                <!-- Calendar Section -->
+                <div class="card">
+                    <h3>Your Calendar</h3>
+                    <!-- Replace YOUR_CALENDAR_LINK with a public Google Calendar URL -->
+                    <iframe src="YOUR_CALENDAR_LINK" style="border:0" width="100%" height="450" frameborder="0"></iframe>
+                </div>
             </div>
         </div>
     </main>
 
-    <!-- Firebase Logic -->
-    <script src="https://www.gstatic.com"></script>
-    <script src="https://www.gstatic.com"></script>
     <script src="app.js"></script>
 </body>
 </html>
